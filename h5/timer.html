@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<button id="btn" onclick="aa()">click</button>
+<script>
+    var timer = null;
+    function aa(){
+        clearInterval(timer);
+        timer = setInterval(function(){
+            console.log(Math.random());
+        }, 300);
+
+    }
+</script>
+</body>
+</html>

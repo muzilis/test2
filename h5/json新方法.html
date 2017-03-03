@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="json2.js"></script>
+<script>
+
+//    var str = "function aa(){ alert('xixi'); }";
+//    var str = '({name:"lisi", age:13})';
+//    var str = '{"name":"lisi", "age":13}';
+//    var str = 'while(true){alert("xixi")}';
+//    var obj = eval(str);
+//    var obj = JSON.parse(str);
+
+//    var obj = {name: 'zhangsan', age: 35};
+
+//    var str = JSON.stringify(obj);
+
+   //var d = Date.parse('2016-02-31');
+
+    var obj1 = {name: 'lisi', age: 34, brother: {name:'lixx'}};
+
+
+    /*var obj2 = {};
+    for(var p in obj1){
+        obj2[p] = obj1[p];
+        obj2.brother = obj1.brother;
+    }*/
+    /*var str = JSON.stringify(obj1);
+    var obj2 = JSON.parse(str);*/
+
+    function clone(o1){
+        var o2 = {};
+        for(var p in o1){
+            /*if(typeof o1[p] === 'object'){
+                o2[p] = arguments.callee(o1[p]);
+            }else{
+                o2[p] = o1[p];
+            }*/
+            o2[p] = typeof o1[p]==='object'?arguments.callee(o1[p]):o1[p];
+        }
+        return o2;
+    }
+
+    var obj2 = clone(obj1);
+
+
+
+
+    obj2.brother.name = 'wangwu';
+
+
+    console.log(obj1.brother.name);
+
+</script>
+</body>
+</html>

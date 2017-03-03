@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul{
+            list-style: none;
+        }
+        #ul1 li{
+            width: 120px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background: #cccccc;
+            margin-right: 10px;
+            float: left;
+        }
+        #ul1{
+            width: 100%;
+            height: 30px;
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+
+<ul id="ul1">
+    <li><a href="#div1" class="link">link 1</a></li>
+    <li><a href="#div2" class="link">link 2</a></li>
+    <li><a href="#div3" class="link">link 3</a></li>
+    <li><a href="#div4" class="link">link 4</a></li>
+</ul>
+
+<div id="div1" style="height: 400px;background: #f00;">div1</div>
+<div id="div2" style="height: 400px;background: #0f0;">div2</div>
+<div id="div3" style="height: 400px;background: #00f;">div3</div>
+<div id="div4" style="height: 400px;background: #333;">div4</div>
+
+
+<script>
+    var aLink = document.querySelectorAll('.link');
+    var timer = null;
+    for(var i=0; i<aLink.length; i++){
+        aLink[i].onclick = function(e){
+            clearInterval(timer);
+            var hash = this.href.substr(this.href.indexOf('#')+1);
+            var oDiv = document.querySelector('#' + hash);
+            var target = oDiv.offsetTop;
+
+            animate(target);
+
+            history.pushState(target, '');
+
+            e.preventDefault();
+        };
+    }
+
+    function animate(target){
+        var current = 0;
+        timer = setInterval(function(){
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+            var speed = (target - scrollTop) / 8;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+
+            current += speed;
+            if(current == target){
+                clearInterval(timer);
+            }
+            window.scrollTo(0, current);
+        }, 30);
+    }
+
+    window.onpopstate = function(e){
+        animate(e.state);
+    };
+
+    /*window.onscroll = function(){
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+        console.log(scrollTop);
+    };*/
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

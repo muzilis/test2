@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+这是测试页 <br/>
+<button id="btn">click</button>
+<br/>
+<iframe id="myframe" src="iframe.html" frameborder="1" style="background: #fff;"></iframe>
+
+<script>
+    var oBtn = document.getElementById('btn');
+    var myFrame = document.getElementById('myframe');
+    oBtn.onclick = function(){
+        //myFrame.contentWindow.document.body.style.background = 'red';
+        myFrame.contentWindow.document.getElementById('div2').style.background = 'green';
+    };
+</script>
+</body>
+</html>

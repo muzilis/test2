@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <button id="btn">open</button>
+    <button id="btn2">click</button>
+    <script>
+        var oBtn = document.getElementById('btn');
+
+        var openWin = null;
+        oBtn.onclick = function(){
+            openWin = window.open('open.html','newwindow', '');
+        };
+
+        var oBtn2 = document.getElementById('btn2');
+        oBtn2.onclick = function(){
+            openWin.document.body.style.background = 'red';
+        };
+    </script>
+</body>
+</html>

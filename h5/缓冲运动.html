@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: #ff0000;
+            position: absolute;
+            left: 0;
+        }
+        #div2{
+            width: 1px;
+            height: 300px;
+            position: absolute;
+            left: 500px;
+            top: 0;
+            background: #000000;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<script>
+    var oDiv = document.getElementById('div1');
+    oDiv.onclick = function(){
+        var speed = 8;
+        var timer = setInterval(function(){
+            speed = (500 - oDiv.offsetLeft) / 8;//500 - oDiv.offsetLeft < speed ? 500 - oDiv.offsetLeft : speed;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+
+            console.log(oDiv.offsetLeft);
+            if(oDiv.offsetLeft == 500){
+//                oDiv.style.left = '500px';
+                clearInterval(timer);
+            }
+        }, 30);
+    };
+</script>
+</body>
+</html>
